@@ -2,12 +2,12 @@ services:
 
   flask:
     build:
-      context: ./backend
+      context: ./flask
     command: python -u app.py
     volumes:
-      - ./backend:/app
+      - ./flask:/app
     ports: 
-      - "5002:5000"
+      - "5002:5002"
     depends_on:
       - postgres_db
     environment:
@@ -15,9 +15,9 @@ services:
 
   react:
     build:
-      context: ./frontend
+      context: ./react
     volumes:
-      - ./frontend:/app
+      - ./react:/app
       - /app/node_modules
     ports:
       - "3000:3000"
@@ -39,3 +39,7 @@ services:
 
 volumes:
   postgres_data:
+
+networks:
+  default:
+    driver: bridge

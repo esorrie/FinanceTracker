@@ -35,5 +35,5 @@
       "last 1 safari version"
     ]
   },
-  "proxy": "http://backend:5002"
+  "proxy": "http://flask:5002"
 }
