@@ -6,7 +6,7 @@ function Dashboard() {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    fetch('/api')
+    fetch('/dashboard')
       .then(response => {
         if (!response.ok) {
           throw new Error(`HTTP error! status: ${response.status}`);

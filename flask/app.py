@@ -7,9 +7,8 @@ CORS(app)
 
 logging.basicConfig(level=logging.DEBUG)
 
-@app.route('/api')
+@app.route('/dashboard')
 def get_data():
-    app.logger.info("Received request for /api")
     try:
         data = {"message": "Hello from Flask!"}
         return jsonify(data)
@@ -18,5 +17,4 @@ def get_data():
         return jsonify({"error": str(e)}), 500
 
 if __name__ == '__main__':
-    app.logger.info("Starting Flask app")
     app.run(host='0.0.0.0', port=5002, debug=True)
