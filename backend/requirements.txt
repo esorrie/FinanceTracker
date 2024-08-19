@@ -1,0 +1,5 @@
+flask
+flask_wtf >= 0.0.0
+psycopg2-binary==2.9.6
+SQLAlchemy==2.0.15
+Flask-SQLAlchemy==3.0.3
