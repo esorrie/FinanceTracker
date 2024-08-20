@@ -1,0 +1,21 @@
+.tabs-container {
+    display: flex;
+}
+
+.tab {
+	flex-direction: row;
+	padding-top: 40px;
+	padding-left: 50px;
+	padding-bottom: 40px;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	font-weight: 400;
+    padding-right: 50px;
+}
+
+.tab.active-tab {
+    border-bottom: bold;
+    color: #DF8400;
+	font-weight: 700;
+	border-bottom: bold;
+}
