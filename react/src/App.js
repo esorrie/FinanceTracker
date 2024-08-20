@@ -2,14 +2,14 @@ import React from 'react';
 import { Switch, Route } from 'react-router-dom';
 import Dashboard from './Dashboard';
 import NavBar from './components/NavBar';
+import './App.css';
 
 
 const App = () => {
     return (
     <>
-        <div style={{"height": "100%"}}>
+        <div className="pageLayout" style={{"height": "100%"}}>
             <NavBar />
-            
             <Switch>
                 <Route path="/" render={() => {
                     return <Dashboard />;
