@@ -5,38 +5,6 @@
 
 }
 
-.dashFirstTabs {
-	display: flex;
-	flex-direction: row;
-	padding-top: 40px;
-	padding-left: 50px;
-	padding-bottom: 40px;
-	font-size: 1.125rem;
-	line-height: 1.75rem;
-	font-weight: 400;
-}
-
-.dashFirstStocks {
-	padding-right: 75px;
-}
-
-.dashFirstIndexes {
-	padding-right: 75px;
-}
-
-.active-tab {
-	color: #DF8400;
-	font-weight: 700;
-}
-
 .tabContent {
 	margin-left: 50px;
-}
-
-.content {
-	display: none;
-}
-
-.activeContent {
-	display: block;
 }
