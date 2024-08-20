@@ -21,12 +21,29 @@ function Dashboard() {
   }, []);
 
   return (
-    <div>
-      <h1>Data from Flask:</h1>
-      {error ? <p>Error: {error}</p> : 
-        data ? <p>{data.message}</p> : 
-        <p>Loading...</p>}
-    </div>
+    <>
+      {/* <div>
+        <h1>Data from Flask:</h1>
+        {error ? <p>Error: {error}</p> : 
+          data ? <p>{data.message}</p> : 
+          <p>Loading...</p>}
+      </div> */}
+      <div>
+        <div className="dashFirst" >
+          <div className="dashFirstTabs" >
+            <div className="dashFirstStocks">
+              Top Stocks
+            </div>
+            <div className="dashFirstIndexes">
+              Indexes
+            </div>
+            <div className="dashFirstCurrency">
+              Currencies
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
   );
 }
 

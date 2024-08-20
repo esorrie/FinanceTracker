@@ -1,0 +1,25 @@
+.dashFirst {
+	border-radius: 3rem;
+	height: 350px;
+	background-color: #302359;
+
+}
+
+.dashFirstTabs {
+	display: flex;
+	flex-direction: row;
+	padding-top: 40px;
+	padding-left: 50px;
+	padding-bottom: 40px;
+	font-size: 1.125rem;
+	line-height: 1.75rem;
+	font-weight: 600;
+}
+
+.dashFirstStocks {
+	padding-right: 75px;
+}
+
+.dashFirstIndexes {
+	padding-right: 75px;
+}

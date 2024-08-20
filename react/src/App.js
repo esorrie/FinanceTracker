@@ -10,12 +10,14 @@ const App = () => {
     <>
         <div className="pageLayout" style={{"height": "100%"}}>
             <NavBar />
-            <Switch>
-                <Route path="/" render={() => {
-                    return <Dashboard />;
-                }} />
-                {/* <Route path="/discover" element={<Discover />} /> */}
-            </Switch>
+            <div className="main">
+                <Switch>
+                    <Route path="/" render={() => {
+                        return <Dashboard />;
+                    }} />
+                    {/* <Route path="/discover" element={<Discover />} /> */}
+                </Switch>
+            </div>
         </div>
     </>
 
