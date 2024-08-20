@@ -20,6 +20,13 @@ function Dashboard() {
       });
   }, []);
 
+    // Dynamic tab rendering 
+    const [toggleState, setToggleState] = useState(1);
+
+    const toggleTab = (index) => {
+      setToggleState(index);
+      console.log(index);
+    }
   return (
     <>
       {/* <div>
@@ -31,13 +38,13 @@ function Dashboard() {
       <div>
         <div className="dashFirst" >
           <div className="dashFirstTabs" >
-            <div className="dashFirstStocks">
+            <div className= {toggleState === 1 ? "dashFirstStocks cursorDefault active-tab" : "dashFirstStocks" } onClick={() => toggleTab(1) } >
               Top Stocks
             </div>
-            <div className="dashFirstIndexes">
+            <div className= {toggleState === 2 ? "dashFirstIndexes cursorDefault active-tab" : "dashFirstIndexes" } onClick={() => toggleTab(2) } >
               Indexes
             </div>
-            <div className="dashFirstCurrency">
+            <div className= {toggleState === 3 ? "dashFirstCurrency cursorDefault active-tab" : "dashFirstCurrency" } onClick={() => toggleTab(3) } >
               Currencies
             </div>
           </div>
