@@ -39,7 +39,7 @@
 }
 
 .nav-item-top:hover {
-    background-color: rgb(245 158 11); 
+    background-color: #DF8400; 
     border-radius: 2rem;
 }
 
@@ -68,7 +68,7 @@
 }
 
 .nav-item:hover {
-    background-color: rgb(245 158 11); 
+    background-color: #DF8400; 
     border-radius: 2rem;
 }
 
@@ -96,7 +96,7 @@
 }
 
 .nav-item-bottom:hover {
-    background-color: rgb(245 158 11); 
+    background-color: #DF8400; 
     border-radius: 2rem;
 }
 
