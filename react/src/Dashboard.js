@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react';
+import ActiveTab from './components/activeTabs';
 import './Dashboard.css';
 
 function Dashboard() {
@@ -20,45 +21,45 @@ function Dashboard() {
         });
     }, []);
 
-        // Dynamic tab rendering 
-        const [toggleState, setToggleState] = useState(1);
+    // Dynamic tab rendering 
+    const [activeTab, setActiveTab] = useState(0);
 
-        const toggleTab = (index) => {
-        setToggleState(index);
-        console.log(index);
+    const tabs = [
+        { label: 'Top Stocks' },
+        { label: 'Indexes' },
+        { label: 'Currencies' }
+    ];
+
+    const renderTabContent = () => {
+        switch(activeTab) {
+            case 0:
+                return  <div className="activeContent" >
+                            <h1>Data from Flask:</h1>
+                                {error ? <p>Error: {error}</p> : 
+                                data ? <p>{data.message}</p> : 
+                                <p>Loading...</p>}
+                        </div>;
+            case 1:
+                return  <div className="activeContent" >
+                            <h1> Indexes </h1>
+                        </div>;
+            case 2:
+                return  <div className="activeContent" >
+                            <h1> Currency </h1> 
+                        </div>;
         }
+    };
+
     return (
         <>
         <div>
-            
-        </div>
-        <div>
             <div className="dashFirst" >
-            <div className="dashFirstTabs" >
-                <div className= {toggleState === 1 ? "dashFirstStocks cursorDefault active-tab" : "dashFirstStocks" } onClick={() => toggleTab(1) } >
-                Top Stocks
+                {/* reusable activeTab component  */}
+                <ActiveTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+                
+                <div className="tabContent">
+                    {renderTabContent()}    
                 </div>
-                <div className= {toggleState === 2 ? "dashFirstIndexes cursorDefault active-tab" : "dashFirstIndexes" } onClick={() => toggleTab(2) } >
-                Indexes
-                </div>
-                <div className= {toggleState === 3 ? "dashFirstCurrency cursorDefault active-tab" : "dashFirstCurrency" } onClick={() => toggleTab(3) } >
-                    Currencies
-                </div>
-            </div>
-            <div className="tabContent">
-                <div className= { toggleState === 1 ? "content activeContent" : "content" } >
-                    <h1>Data from Flask:</h1>
-                        {error ? <p>Error: {error}</p> : 
-                        data ? <p>{data.message}</p> : 
-                        <p>Loading...</p>}
-                </div>
-                <div className= { toggleState === 2 ? "content activeContent" : "content" } >
-                    <h1> Indexes </h1>
-                </div>
-                <div className= { toggleState === 3 ? "content activeContent" : "content" } >
-                    <h1> Currency </h1> 
-                </div>
-            </div>
             </div>
         </div>
         </>
