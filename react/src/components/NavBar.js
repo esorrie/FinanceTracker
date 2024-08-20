@@ -1,5 +1,8 @@
 import { NavLink } from "react-router-dom";
 import './NavBar.css';
+import DashIcon from "../icons/dashboardicon.svg";
+import DiscIcon from "../icons/discovericon.svg";
+import FavIcon from "../icons/favouritesicon.svg";
 
 const NavBar = () => {
     return (
@@ -13,7 +16,7 @@ const NavBar = () => {
                 <nav className="navbar-content">
                     <NavLink to="/" style={{ textDecoration: 'none' }} >
                         <div className="nav-item-top">
-                            {/* <img className="dashIcon" src="icons/dashboardicon.svg" /> */}
+                            <img className="dashIcon" src={DashIcon} />
                             <div className="dash"> 
                                 Dashboard
                             </div>
@@ -21,7 +24,7 @@ const NavBar = () => {
                     </NavLink>
                     <NavLink to="/discover" style={{ textDecoration: 'none '}} >
                         <div className="nav-item">
-                            {/* <img className="disc-icon"/> */}
+                            <img className="discIcon" src={DiscIcon} />
                             <div className="disc">
                                 Discover
                             </div>
@@ -29,7 +32,7 @@ const NavBar = () => {
                     </NavLink>
                     <NavLink to="/favourites" style={{ textDecoration: 'none' }} >
                         <div className="nav-item-bottom">
-                            {/* <img className="fav-icon"/> */}
+                            <img className="favIcon" src={FavIcon} />
                             <div className="fav">
                                 Favourites
                             </div>
