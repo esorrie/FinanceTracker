@@ -30,15 +30,19 @@ function Dashboard() {
         { label: 'Currencies' }
     ];
 
-    const renderTabContent = () => {
+    const renderMainTabContent = () => {
         switch(activeTab) {
             case 0:
-                return  <div className="activeContent" >
-                            <h1>Data from Flask:</h1>
-                                {error ? <p>Error: {error}</p> : 
-                                data ? <p>{data.message}</p> : 
-                                <p>Loading...</p>}
-                        </div>;
+                return  (
+                    <div className='subTabs'>
+                        <ActiveTab
+                            tabs = {stockTabs}
+                            activeTab={activeStockTab}
+                            setActiveTab={setActiveStockTab}
+                        />
+                        {renderStockTabContent()}
+                    </div>
+                )
             case 1:
                 return  <div className="activeContent" >
                             <h1> Indexes </h1>
@@ -50,16 +54,54 @@ function Dashboard() {
         }
     };
 
+    const [activeStockTab, setActiveStockTab] = useState(0);
+
+    const stockTabs = [
+        { label: 'Big Tech' },
+        { label: 'Big Pharma' },
+        { label: 'Banks' }
+    ]
+
+    const renderStockTabContent = () => {
+        switch(activeStockTab) {
+            case 0:
+                return  <div className="activeContent" >
+                            <h1> This is big tech </h1>
+                        </div>;
+            
+            case 1:
+                return  <div className="activeContent" >
+                            <h1> This is big Pharma </h1>
+                        </div>;
+
+            case 2:
+                return  <div className="activeContent" >
+                            <h1> This is Banks </h1>
+                        </div>;
+        }
+    }
+    
     return (
         <>
-        <div>
+        <div className='dashboard'>
             <div className="dashFirst" >
                 {/* reusable activeTab component  */}
                 <ActiveTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                 
                 <div className="tabContent">
-                    {renderTabContent()}    
+                    {renderMainTabContent()}    
                 </div>
+            </div>
+            <div className='dashSecond'>
+                <div className='dashSecondA'>
+                    <h1 className='secondATitle'> Winners </h1>
+                </div>
+                <div  className='dashSecondB'>
+                    <h1 className='secondBTitle'> Losers </h1>
+                </div>
+            </div>
+            <div className='dashThird'>
+
             </div>
         </div>
         </>

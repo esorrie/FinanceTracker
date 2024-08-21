@@ -1,10 +1,70 @@
+.dashboard {
+	display: grid;
+	height: 100%;
+	grid-template-columns: repeat(3, minmax(0, 1fr));
+	grid-template-rows: repeat(6, minmax(0, 1fr));
+	column-gap: 1.5rem;
+}
+
 .dashFirst {
 	border-radius: 3rem;
-	height: 450px;
+	width: 100%;
+	height: 100%;
 	background-color: #302359;
+	grid-column: span 3 / span 3;
+	grid-row: span 3 / span 3 ;
+}
 
+.subTabs {
+	margin-top: -50px;
 }
 
 .tabContent {
-	margin-left: 50px;
+	margin-top: -40px;
+	
+}
+
+.dashSecond {
+	display: grid;
+	grid-template-rows: repeat(2, minmax(0, 1fr));
+	border-radius: 3rem;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	width: 100%;
+	background-color: #302359;
+	grid-column: span 2 / span 2;
+	grid-row: span 3 / span 3;
+}
+
+.dashSecondA {
+	grid-row: span 1 / span 1;
+	border-radius: 2rem;
+	margin: 16px;
+	background-color: #000;
+
+}
+
+.secondATitle{
+	padding-left: 32px;
+}
+
+.secondBTitle{
+	padding-left: 32px;
+}
+
+.dashSecondB {
+	grid-row: span 1 / span 1;
+	border-radius: 2rem;
+	margin: 16px;
+	background-color: #000;
+}
+
+.dashThird {
+	border-radius: 3rem;
+	margin-top: 24px;
+	margin-bottom: 24px;
+	background-color: #302359;
+	heigth: 100px;
+	width: 100%;
+	grid-row: span 3 / span 3;
 }
