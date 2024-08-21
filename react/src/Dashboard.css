@@ -40,7 +40,7 @@
 	grid-row: span 1 / span 1;
 	border-radius: 2rem;
 	margin: 16px;
-	background-color: #000;
+	background-color: #4F1787;
 
 }
 
@@ -56,15 +56,24 @@
 	grid-row: span 1 / span 1;
 	border-radius: 2rem;
 	margin: 16px;
-	background-color: #000;
+	background-color: #4F1787;
 }
 
 .dashThird {
+	display: grid;
 	border-radius: 3rem;
 	margin-top: 24px;
 	margin-bottom: 24px;
 	background-color: #302359;
-	heigth: 100px;
 	width: 100%;
 	grid-row: span 3 / span 3;
+}
+
+.dashThirdContent{
+	border-radius: 2rem;
+	margin: 16px;
+	background-color: #4F1787;
+}
+.thirdTitle{
+	padding-left: 32px;
 }

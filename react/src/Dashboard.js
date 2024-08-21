@@ -101,7 +101,13 @@ function Dashboard() {
                 </div>
             </div>
             <div className='dashThird'>
-
+                <div className='dashThirdContent'>
+                    <div className='thirdTitle'>
+                        <h1>
+                            ETF's    
+                        </h1>
+                    </div>
+                </div>
             </div>
         </div>
         </>
