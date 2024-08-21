@@ -16,6 +16,7 @@
     font-size:  1.75rem;
     text-align: center;
     color: #fff;
+    font-weight: 800;
 }
 
 .navbar-content {
@@ -39,7 +40,7 @@
 }
 
 .nav-item-top:hover {
-    background-color: #DF8400; 
+    background-color: #FB773C; 
     border-radius: 2rem;
 }
 
@@ -68,7 +69,7 @@
 }
 
 .nav-item:hover {
-    background-color: #DF8400; 
+    background-color: #FB773C; 
     border-radius: 2rem;
 }
 
@@ -96,7 +97,7 @@
 }
 
 .nav-item-bottom:hover {
-    background-color: #DF8400; 
+    background-color: #FB773C; 
     border-radius: 2rem;
 }
 
