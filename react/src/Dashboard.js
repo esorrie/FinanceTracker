@@ -34,22 +34,24 @@ function Dashboard() {
         switch(activeTab) {
             case 0:
                 return  (
-                    <div className='subTabs'>
-                        <ActiveTab
-                            tabs = {stockTabs}
-                            activeTab={activeStockTab}
-                            setActiveTab={setActiveStockTab}
-                        />
+                    <>
+                        <div className='subTabs'>
+                            <ActiveTab
+                                tabs = {stockTabs}
+                                activeTab={activeStockTab}
+                                setActiveTab={setActiveStockTab}
+                                />
+                        </div>
                         {renderStockTabContent()}
-                    </div>
+                    </>
                 )
             case 1:
-                return  <div className="activeContent" >
-                            <h1> Indexes </h1>
+                return  <div className="activeContentContainer" >
+                            <div className='activeContent'> Indexes </div>
                         </div>;
             case 2:
-                return  <div className="activeContent" >
-                            <h1> Currency </h1> 
+                return  <div className="activeContentContainer" >
+                            <div className='activeContent'> Currency </div> 
                         </div>;
         }
     };
@@ -65,18 +67,18 @@ function Dashboard() {
     const renderStockTabContent = () => {
         switch(activeStockTab) {
             case 0:
-                return  <div className="activeContent" >
-                            <h1> This is big tech </h1>
+                return  <div className="activeContentContainer" >
+                            <div className='activeContent'> This is big tech </div>
                         </div>;
             
             case 1:
-                return  <div className="activeContent" >
-                            <h1> This is big Pharma </h1>
+                return  <div className="activeContentContainer" >
+                            <div className='activeContent'> This is big Pharma </div>
                         </div>;
 
             case 2:
-                return  <div className="activeContent" >
-                            <h1> This is Banks </h1>
+                return  <div className="activeContentContainer" >
+                            <div className='activeContent'> This is Banks </div>
                         </div>;
         }
     }
@@ -88,9 +90,8 @@ function Dashboard() {
                 {/* reusable activeTab component  */}
                 <ActiveTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
                 
-                <div className="tabContent">
                     {renderMainTabContent()}    
-                </div>
+                
             </div>
             <div className='dashSecond'>
                 <div className='dashSecondA'>
