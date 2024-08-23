@@ -21,23 +21,53 @@ class Stocks(db.Model):
     id = db.Column(db.Integer, primary_key=True)
     name = db.Column(db.String(80), unique=True, nullable=False)
     price = db.Column(db.Integer, unique=True, nullable=False)
-    Market_Cap= db.Column(db.Integer, unique=True, nullable=False)
+    Market_Cap = db.Column(db.Integer, unique=True, nullable=False)
+    prev_close = db.Column(db.Integer, unique=True, nullable=False)
+    open = db.Column(db.Integer, unique=True, nullable=False)
+    bid = db.Column(db.Integer, unique=True, nullable=False)
+    ask = db.Column(db.Integer, unique=True, nullable=False)
+    day_range = db.Column(db.Integer, unique=True, nullable=False)
+    year_range = db.Column(db.Integer, unique=True, nullable=False)
+    volume = db.Column(db.Integer, unique=True, nullable=False)
+    avg_volume = db.Column(db.Integer, unique=True, nullable=False)
+    beta = db.Column(db.Integer, unique=True, nullable=False)
+    PE_ratio = db.Column(db.Integer, unique=True, nullable=False)
+    EPS = db.Column(db.Integer, unique=True, nullable=False)
+    earnings_date = db.Column(db.Date, unique=True, nullable=False)
+    dividend_yield = db.Column(db.Integer, unique=True, nullable=False)
+    dividend_date = db.Column(db.Date, unique=True, nullable=False)
+    year_est = db.Column(db.Integer, unique=True, nullable=False)
     
     def __repr__(self):
         return f'<Stock {self.name}>'
     
 class Indices(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-    price = db.Column(db.String(10), unique=True, nullable=False)
+    title = db.Column(db.String(80), unique=True, nullable=False)
+    ticker = db.Column(db.String(80), unique=True, nullable=False)
+    currency = db.Column(db.String(80), unique=True, nullable=False)
+    open = db.Column(db.Integer, unique=True, nullable=False)
+    close = db.Column(db.Integer, unique=True, nullable=False)
+    day_range = db.Column(db.Integer, unique=True, nullable=False)
+    year_range = db.Column(db.Integer, unique=True, nullable=False)
+    prev_close = db.Column(db.Integer, unique=True, nullable=False)
+    volume = db.Column(db.Integer, unique=True, nullable=False)
+    volume = db.Column(db.Integer, unique=True, nullable=False)
     
     def __repr__(self):
         return f'<Index {self.name}>'
 
 class Currencies(db.Model):
     id = db.Column(db.Integer, primary_key=True)
-    name = db.Column(db.String(80), unique=True, nullable=False)
-    price = db.Column(db.String(10), unique=True, nullable=False)
+    title = db.Column(db.String(80), unique=True, nullable=False)
+    ticker = db.Column(db.String(10), unique=True, nullable=False)
+    price = db.Column(db.Integer, unique=True, nullable=False)
+    prev_close = db.Column(db.Integer, unique=True, nullable=False)
+    open = db.Column(db.Integer, unique=True, nullable=False)
+    bid = db.Column(db.Integer, unique=True, nullable=False)
+    ask = db.Column(db.Integer, unique=True, nullable=False)
+    day_range = db.Column(db.Integer, unique=True, nullable=False)
+    year_range = db.Column(db.Integer, unique=True, nullable=False)
     
     def __repr__(self):
         return f'<Currency {self.name}>'
