@@ -36,12 +36,12 @@ function Dashboard() {
             title: "S&P 500 (GSPC)",
             currency: "USD",
             data: {
-                "open": 25000,
-                "close": 25000,
-                "day's range": 25000,
-                "52w range": 25000,
-                "prev close": 25000,
-                "volume": 25000
+                "open ": 25000,
+                "prev close ": 25000,
+                "day range ": 25000,
+                "52w range ": 25000,
+                "volume ": 25000,
+                "avg. volume": 30000
             }
         },
         {
