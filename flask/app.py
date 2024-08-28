@@ -1,4 +1,4 @@
-from flask import Flask, jsonify
+from flask import Flask, jsonify, current_app
 from flask_cors import CORS
 import logging
 from flask_sqlalchemy import SQLAlchemy 
@@ -81,6 +81,17 @@ class Currencies(db.Model):
 
 with app.app_context():
     db.create_all()
+    
+def is_valid_hour():
+    now = datetime.now().time()
+    return time(6, 0) <= now <= time(22, 0)
+
+def scheduled_task():
+    with app.app_context:    
+        if is_valid_hour():
+            success, message = get_index_data()
+            if not success:
+                current_app.logger.error(f"Scheduled task failed: {message}")
 
 def get_index_data():
     url = f'{FMP_API}/quotes/index?apikey={FMP_API_KEY}'
@@ -132,7 +143,7 @@ def get_index_data():
         return False, error_message
     
 
-@app.route('/dashboard')
+@app.route('/dashboard', methods=['GET'])
 def dashboard():
     try:
         dashIndicesTickers = ["^GSPC", "^IXIC", "^FTSE", "^RUT"]
@@ -162,27 +173,20 @@ def dashboard():
 #     discover = {"message": "This is the Search Page"}
 #     return jsonify(discover)
 
-def is_valid_hour():
-    now = datetime.now().time()
-    return time(6, 0) <= now <= time(22, 0)
-
-def scheduled_task():
-    if is_valid_hour():
-        success, message = get_index_data()
-
-        if not success:
-            app.logger.error(f"Scheduled task failed: {message}")
-            
-scheduler = BackgroundScheduler()
-scheduler.add_job(func=scheduled_task, trigger="cron", hour='6-22', minute=0)
-scheduler.start()
-
-with app.app_context():
-    success, message = get_index_data()
-    if success:
-        print("Initial API call successful")
-    else:
-        print(f"Initial API call failed: {message}")
+def init_scheduler():
+    scheduler = BackgroundScheduler()
+    scheduler.add_job(func=scheduled_task, trigger="cron", hour='6-22', minute=0)
+    scheduler.start()
     
 if __name__ == '__main__':
+    # initial api call
+    with app.app_context():
+        success, message = get_index_data()
+        if success:
+            print("Initial API call successful")
+        else:
+            print(f"Initial API call failed: {message}")
+            
+    init_scheduler()
+    
     app.run(host='0.0.0.0', port=5002, debug=True)
