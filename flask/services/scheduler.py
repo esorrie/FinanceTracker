@@ -1,7 +1,7 @@
-from apscheduler.schedulers.background import BackgroundScheduler
+from apscheduler.schedulers.background import BackgroundScheduler # type: ignore
 from flask import current_app
 from models.indices import Indices
-import requests
+import requests # type: ignore
 from datetime import datetime
 from extensions import db
 
@@ -17,13 +17,13 @@ def get_index_data():
             existing_index = Indices.query.filter_by(ticker=index['symbol']).first()
             
             if existing_index:
-                existing_index.price = index['price'],
-                existing_index.open = index['open'],
-                existing_index.prev_close = index['previousClose'],
-                existing_index.dayRange = index['change'],
-                existing_index.yearLow = index['yearLow'],
-                existing_index.yearHigh = index['yearHigh'],
-                existing_index.volume = index['volume'],
+                existing_index.price = index['price']
+                existing_index.open = index['open']
+                existing_index.prev_close = index['previousClose']
+                existing_index.dayRange = index['change']
+                existing_index.yearLow = index['yearLow']
+                existing_index.yearHigh = index['yearHigh']
+                existing_index.volume = index['volume']
                 existing_index.changePercentage = index['changesPercentage']
             else:
                 new_index = Indices(
@@ -78,27 +78,30 @@ def update_indices_prices():
 
 
 def scheduled_index_update():
-    with current_app.app_context():    
-        success, message = get_index_data()
-        if not success:
-            current_app.logger.error(f"Hourly full update failed: {message}")
+    success, message = get_index_data()
+    if not success:
+        current_app.logger.error(f"Hourly full update failed: {message}")
 
 def scheduled_index_price_update():
-    with current_app.app_context():    
-        success, message = update_indices_prices()
-        if not success:
-            current_app.logger.error(f"Minute price update failed: {message}")
+    success, message = update_indices_prices()
+    if not success:
+        current_app.logger.error(f"Minute price update failed: {message}")
             
 
 def init_scheduler(app):
     scheduler = BackgroundScheduler()
+    
+    def run_job(job_func):
+        with app.app_context():
+            job_func()
+            
     scheduler.add_job(
-        func=scheduled_index_update, 
+        func=lambda: run_job(scheduled_index_update), 
         trigger="cron", hour='6-22', minute=0
         )
     
     scheduler.add_job(
-        func=scheduled_index_price_update, 
+        func=lambda: run_job(scheduled_index_price_update), 
         trigger="cron", hour='6-22', minute='1-59'
         )
     

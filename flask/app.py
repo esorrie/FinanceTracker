@@ -1,8 +1,6 @@
 from flask import Flask
-from flask_cors import CORS
+from flask_cors import CORS # type: ignore
 import logging
-from flask_sqlalchemy import SQLAlchemy 
-from flask_migrate import Migrate
 import os
 from extensions import db, migrate
 #Import scheduler
@@ -31,6 +29,8 @@ def create_app():
     from routes.dashboard import dashboard_bp
     app.register_blueprint(dashboard_bp)
     
+    init_scheduler(app)
+    
     return app
 
 app = create_app()
@@ -44,7 +44,5 @@ if __name__ == '__main__':
             print("Initial API call successful")
         else:
             print(f"Initial API call failed: {message}")
-            
-    init_scheduler(app)
     
     app.run(host='0.0.0.0', port=5002, debug=True)
