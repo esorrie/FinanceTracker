@@ -13,17 +13,18 @@ def get_gainers_data():
         
         db.session.begin()
         
-        Gainers.query.delete()
+        Gainers.query.delete() # deletes current db data
         
         for gainer in data:
-            new_gainer = Gainers(
-                name = gainer["name"],
-                ticker = gainer["symbol"],
-                price = gainer["price"],
-                change = gainer["change"],
-                changePercentage = gainer["changesPercentage"]
-            )
-            db.session.add(new_gainer)
+            if gainer["name"] is not None: # prevents adding gainer to db where name is null
+                new_gainer = Gainers(
+                    name = gainer["name"],
+                    ticker = gainer["symbol"],
+                    price = gainer["price"],
+                    change = gainer["change"],
+                    changePercentage = gainer["changesPercentage"]
+                )
+                db.session.add(new_gainer)
             
         db.session.commit()
         return True, f'Gainers data updated. {len(data)} records added.'
