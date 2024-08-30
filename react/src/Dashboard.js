@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import ActiveTab from './components/activeTabs';
 import DashIndices from './components/dashIndices';
+import TopMovers from './components/topMovers';
 import axios from 'axios';
 import './Dashboard.css';
 
@@ -9,6 +10,7 @@ function Dashboard() {
     const [activeTab, setActiveTab] = useState(1); //change state back to 0
     const [activeStockTab, setActiveStockTab] = useState(0);
     const [indicesData, setIndicesData] = useState([]);
+    const [gainersData, setGainersData] = useState([]);
 
 
     const tabs = [
@@ -18,16 +20,18 @@ function Dashboard() {
     ];
 
     useEffect(() => {
-        fetchIndicesData();
+        fetchDashboardData();
     }, []);
 
-    const fetchIndicesData = async () => {
+    const fetchDashboardData = async () => {
         try {
             // console.log('fetching data');
             const response = await axios.get('/dashboard')
             // console.log('response received:', response);
-            setIndicesData(response.data)
-            // console.log('indices data set:', response.data);
+            setIndicesData(response.data.indices);
+            // console.log('indices data set:', response.data.indices);
+            setGainersData(response.data.gainers);
+            // console.log('gainers data set:', response.data.gainers);
         } catch (error) {
             console.error('Error fetching indices data:', error);
         }
@@ -122,36 +126,44 @@ function Dashboard() {
         }
     }
 
-    return (
-        <>
-        <div className='dashboard'>
-            <div className="dashFirst" >
-                {/* reusable activeTab component  */}
-                <ActiveTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
-                
-                    {renderMainTabContent()}    
-                
-            </div>
-            <div className='dashSecond'>
-                <div className='dashSecondA'>
-                    <h1 className='secondATitle'> Winners </h1>
-                </div>
-                <div  className='dashSecondB'>
-                    <h1 className='secondBTitle'> Losers </h1>
-                </div>
-            </div>
-            <div className='dashThird'>
-                <div className='dashThirdContent'>
-                    <div className='thirdTitle'>
-                        <h1>
-                            ETF's    
-                        </h1>
+    return  <>
+                <div className='dashboard'>
+                    <div className="dashFirst" >
+                        {/* reusable activeTab component  */}
+                        <ActiveTab tabs={tabs} activeTab={activeTab} setActiveTab={setActiveTab} />
+                        
+                            {renderMainTabContent()}    
+                        
+                    </div>
+                    <div className='dashSecond'>
+                        <div className='dashSecondA'>
+                            <div className='secondATitle'> Winners </div>
+                            <div className="moverContentContainer" >
+                                <div className='moverContent graphsLayout'>
+                                    {gainersData.map((index, i) => (
+                                        <TopMovers
+                                            key={i}
+                                            index={index}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
+                        </div>
+                        <div  className='dashSecondB'>
+                            <h1 className='secondBTitle'> Losers </h1>
+                        </div>
+                    </div>
+                    <div className='dashThird'>
+                        <div className='dashThirdContent'>
+                            <div className='thirdTitle'>
+                                <h1>
+                                    ETF's    
+                                </h1>
+                            </div>
+                        </div>
                     </div>
                 </div>
-            </div>
-        </div>
-        </>
-    );
+            </>
 }
 
 export default Dashboard;
