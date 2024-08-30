@@ -27,24 +27,22 @@ const DashIndices = ({ index, currency }) => {
         changePercentage: 'Change %'
     };
 
-    return (
-        <>
-            <div className="graphLayout">
-                <div className="graphTitle">
-                    {index.name} ({index.ticker}) - {currency}
-                </div>
+    return  <>
+                <div className="graphLayout">
+                    <div className="graphTitle">
+                        {index.name} ({index.ticker}) - {currency}
+                    </div>
 
-                <div className="tableContent">
-                    {dataOrder.map((key) => (
-                        <div key={key} className="tr">    
-                            <div className="dataLabel"> {labelMap[key]} </div>
-                            <div className="dataValue"> {formatValue(key, index[key])} </div>
-                        </div>
-                    ))} 
-                </div>
-            </div> 
-        </>
-    );
+                    <div className="tableContent">
+                        {dataOrder.map((key) => (
+                            <div key={key} className="tr">    
+                                <div className="dataLabel"> {labelMap[key]} </div>
+                                <div className="dataValue"> {formatValue(key, index[key])} </div>
+                            </div>
+                        ))} 
+                    </div>
+                </div> 
+            </>
 };
 
 export default DashIndices;
