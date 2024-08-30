@@ -4,7 +4,9 @@ import logging
 import os
 from extensions import db, migrate
 #Import scheduler
-from services.scheduler import init_scheduler, get_index_data
+from services.scheduler import init_scheduler
+from services.indices_service import get_index_data
+from services.gainer_service import get_gainers_data
 
 def create_app():
     app = Flask(__name__)
@@ -40,8 +42,10 @@ app = create_app()
 if __name__ == '__main__':
     with app.app_context():
         db.create_all()
+        
         # initial api call
         success, message = get_index_data()
+        success, message = get_gainers_data()
         if success:
             print("Initial API call successful")
         else:
