@@ -1,6 +1,5 @@
 from apscheduler.schedulers.background import BackgroundScheduler # type: ignore
 from flask import current_app
-from .gainer_service import get_gainers_data
 from .indices_service import get_index_data, update_indices_prices
 from .gainer_service import get_gainers_data
 from .loser_service import get_losers_data
@@ -14,7 +13,7 @@ def scheduled_index_update():
 def scheduled_index_price_update():
     success, message = update_indices_prices()
     if not success:
-        current_app.logger.error(f"Minute price update failed: {message}")
+        current_app.logger.error(f"Minute price update fro indices failed: {message}")
 
 def scheduled_gainers_update():
     success, message = get_gainers_data()
