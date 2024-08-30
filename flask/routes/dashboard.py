@@ -1,5 +1,6 @@
 from flask import Blueprint, jsonify, current_app
 from models.indices import Indices
+from models.gainer import Gainers
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
@@ -22,7 +23,20 @@ def dashboard():
             'changePercentage': index.changePercentage,
         } for index in indices ]
         
-        return jsonify(dashIndices)
+        gainers = Gainers.query.limit(4).all()
+        
+        dashGainers = [{
+            'name': gainer.name,
+            'ticker': gainer.ticker,
+            'price': gainer.price,
+            'change': gainer.change,
+            'changePercentage': gainer.changePercentage,
+        } for gainer in gainers ]
+        
+        return jsonify({
+            'indices': dashIndices,
+            'gainers': dashGainers,
+            })
         
     except Exception as e:
         current_app.logger.error(f"An error occurred: {str(e)}")
