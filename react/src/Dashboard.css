@@ -75,7 +75,6 @@
 	border-radius: 1rem;
 	background-color: #000;
 	margin-bottom: 32px;
-
 }
 
 .graphTitle {
@@ -95,15 +94,6 @@
 	border-bottom-style: dashed;
 	border-width: 1px;
 	padding-bottom: 8px;
-}
-
-.btr{
-	display: flex;
-	justify-content: space-between;
-}
-
-. {
-
 }
 
 
@@ -135,11 +125,35 @@
 	border-radius: 2rem;
 	margin: 16px;
 	background-color: #4F1787;
-
+	display: flex;
+	flex-dircetion: row;
+	flex-wrap: wrap;
 }
 
 .secondATitle{
+	font-size: 2rem;
+	font-weight: 800;
+	margin-top: 8px;
 	padding-left: 32px;
+}
+
+.moverContentContainer {
+	margin-right: 16px;
+	margin-bottom: 16px;
+
+}
+
+.moverContent {
+	height: 100%;
+}
+
+.moverLayout {
+	padding-top: 16px;
+	padding-left: 24px;
+	padding-right: 24px;
+	border-color: #fff;
+	border-radius: 1rem;
+	background-color: #000;
 }
 
 .secondBTitle{
