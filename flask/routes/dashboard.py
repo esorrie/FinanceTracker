@@ -1,6 +1,7 @@
 from flask import Blueprint, jsonify, current_app
 from models.indices import Indices
 from models.gainer import Gainers
+from models.loser import Losers
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
@@ -33,9 +34,20 @@ def dashboard():
             'changePercentage': gainer.changePercentage,
         } for gainer in gainers ]
         
+        losers = Losers.query.limit(4).all()
+        
+        dashLosers = [{
+            'name': loser.name,
+            'ticker': loser.ticker,
+            'price': loser.price,
+            'change': loser.change,
+            'changePercentage': loser.changePercentage,
+        } for loser in losers ]
+        
         return jsonify({
             'indices': dashIndices,
             'gainers': dashGainers,
+            'losers': dashLosers,
             })
         
     except Exception as e:

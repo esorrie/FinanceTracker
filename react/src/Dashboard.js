@@ -11,6 +11,7 @@ function Dashboard() {
     const [activeStockTab, setActiveStockTab] = useState(0);
     const [indicesData, setIndicesData] = useState([]);
     const [gainersData, setGainersData] = useState([]);
+    const [losersData, setLosersData] = useState([]);
 
 
     const tabs = [
@@ -32,6 +33,8 @@ function Dashboard() {
             // console.log('indices data set:', response.data.indices);
             setGainersData(response.data.gainers);
             // console.log('gainers data set:', response.data.gainers);
+            setLosersData(response.data.losers);
+            // console.log('losers data set:', response.data.losers);
         } catch (error) {
             console.error('Error fetching indices data:', error);
         }
@@ -150,7 +153,17 @@ function Dashboard() {
                             </div>
                         </div>
                         <div  className='dashSecondB'>
-                            <h1 className='secondBTitle'> Losers </h1>
+                            <div className='secondBTitle'> Losers </div>
+                            <div className="moverContentContainer" >
+                                <div className='moverContent graphsLayout'>
+                                    {losersData.map((index, i) => (
+                                        <TopMovers
+                                            key={i}
+                                            index={index}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                     <div className='dashThird'>
