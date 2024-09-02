@@ -7,6 +7,8 @@ from extensions import db, migrate
 from services.scheduler import init_scheduler
 from services.indices_service import get_index_data
 from services.gainer_service import get_gainers_data
+from services.loser_service import get_losers_data
+from services.etfs_service import get_etfs_data
 
 def create_app():
     app = Flask(__name__)
@@ -47,6 +49,9 @@ if __name__ == '__main__':
         # initial api call
         success, message = get_index_data()
         success, message = get_gainers_data()
+        success, message = get_losers_data()
+        success, message = get_etfs_data()
+        
         if success:
             print("Initial API call successful")
         else:
