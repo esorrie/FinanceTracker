@@ -2,6 +2,7 @@ from flask import Blueprint, jsonify, current_app
 from models.indices import Indices
 from models.gainer import Gainers
 from models.loser import Losers
+from models.etfs import Etfs
 
 dashboard_bp = Blueprint('dashboard', __name__)
 
@@ -44,10 +45,23 @@ def dashboard():
             'changePercentage': loser.changePercentage,
         } for loser in losers ]
         
+        dashEtfTickers = ['VUAG.L', 'IITU.L', 'VUKG.L']
+        
+        etfs = Etfs.query.filter(Etfs.ticker.in_(dashEtfTickers)).all()
+        
+        dashEtfs = [{
+            'name': etf.name,
+            'ticker': etf.ticker,
+            'price': etf.price,
+            'exchange': etf.exchange,
+            'exchangeShort': etf.exchangeShort,
+        } for etf in etfs]
+        
         return jsonify({
             'indices': dashIndices,
             'gainers': dashGainers,
             'losers': dashLosers,
+            'etfs': dashEtfs,
             })
         
     except Exception as e:

@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import ActiveTab from './components/activeTabs';
 import DashIndices from './components/dashIndices';
 import TopMovers from './components/topMovers';
+import DashEtfs from './components/dashEtfs';
 import axios from 'axios';
 import './Dashboard.css';
 
@@ -12,6 +13,7 @@ function Dashboard() {
     const [indicesData, setIndicesData] = useState([]);
     const [gainersData, setGainersData] = useState([]);
     const [losersData, setLosersData] = useState([]);
+    const [etfData, setEtfsData] = useState([]);
 
 
     const tabs = [
@@ -35,6 +37,8 @@ function Dashboard() {
             // console.log('gainers data set:', response.data.gainers);
             setLosersData(response.data.losers);
             // console.log('losers data set:', response.data.losers);
+            setEtfsData(response.data.etfs);
+            // console.log('losers data set:', response.data.etfs);
         } catch (error) {
             console.error('Error fetching indices data:', error);
         }
@@ -168,11 +172,13 @@ function Dashboard() {
                     </div>
                     <div className='dashThird'>
                         <div className='dashThirdContent'>
-                            <div className='thirdTitle'>
-                                <h1>
-                                    ETF's    
-                                </h1>
-                            </div>
+                            <div className='thirdTitle'> ETF's </div>
+                                {etfData.map((index, i ) => (
+                                    <DashEtfs
+                                        key={i}
+                                        index={index}
+                                    />
+                                ))}
                         </div>
                     </div>
                 </div>
