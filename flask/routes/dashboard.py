@@ -45,7 +45,7 @@ def dashboard():
             'changePercentage': loser.changePercentage,
         } for loser in losers ]
         
-        dashEtfTickers = ['VUAG.L', 'IITU.L', 'VUKG.L']
+        dashEtfTickers = ['VUAG.L', 'IITU.L', 'VUKG.L', 'R2SC.L']
         
         etfs = Etfs.query.filter(Etfs.ticker.in_(dashEtfTickers)).all()
         
