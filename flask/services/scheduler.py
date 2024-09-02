@@ -3,6 +3,7 @@ from flask import current_app
 from .indices_service import get_index_data, update_indices_prices
 from .gainer_service import get_gainers_data
 from .loser_service import get_losers_data
+from .etfs_service import get_etfs_data
 
 
 def scheduled_index_update():
@@ -18,13 +19,17 @@ def scheduled_index_price_update():
 def scheduled_gainers_update():
     success, message = get_gainers_data()
     if not success:
-        current_app.logger.error(f"Minute price update for gainers failed: {message}")
+        current_app.logger.error(f"5 Minute price update for gainers failed: {message}")
 
 def scheduled_losers_update():
     success, message = get_losers_data()
     if not success:
-        current_app.logger.error(f"Minute price update for losers failed: {message}")
+        current_app.logger.error(f"5 Minute price update for losers failed: {message}")
 
+def scheduled_etf_update():
+    success, message = get_etfs_data()
+    if not success:
+        current_app.logger.error(f"Minute price update for Etf's failed: {message}")
 
 
 def init_scheduler(app):
@@ -39,19 +44,23 @@ def init_scheduler(app):
         trigger="cron", hour='6-22', minute=0
         )
     
+    def run_min_jobs():
+        run_job(scheduled_index_price_update)
+        run_job(scheduled_etf_update)
+        
     scheduler.add_job(
-        func=lambda: run_job(scheduled_index_price_update), 
+        func=run_min_jobs,
         trigger="cron", hour='6-22', minute='1-59'
         )
     
+    def run_5min_jobs():
+        run_job(scheduled_gainers_update)
+        run_job(scheduled_losers_update)
+        
+
     scheduler.add_job(
-        func=lambda: run_job(scheduled_gainers_update),
+        func=run_5min_jobs,
         trigger='cron', hour='6-22', minute='*/5'
-        )
-    
-    scheduler.add_job(
-        func=lambda: run_job(scheduled_losers_update),
-        trigger='cron', hour='6-22', minute='*/5'
-        )
+        )    
     
     scheduler.start()
