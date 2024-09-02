@@ -17,12 +17,12 @@ const DashEtfs = ({ index }) => {
     };
 
     return <>
-            <div className="graphLayout">
+            <div className="etfLayout">
                 <div className="graphTitle">
                     {index.name} ({index.ticker})
                 </div>
 
-                <div className="tableContent">
+                <div className="etfContent">
                     {dataOrder.map((key) => (
                         <div key={key} className="tr">    
                             <div className="dataLabel"> {labelMap[key]} </div>

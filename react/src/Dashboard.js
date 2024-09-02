@@ -172,13 +172,17 @@ function Dashboard() {
                     </div>
                     <div className='dashThird'>
                         <div className='dashThirdContent'>
-                            <div className='thirdTitle'> ETF's </div>
-                                {etfData.map((index, i ) => (
-                                    <DashEtfs
+                        <div className='thirdTitle'> ETF's </div>
+                            <div className='etfContentContainer'>
+                                <div className='etfContent'>
+                                    {etfData.map((index, i ) => (
+                                        <DashEtfs
                                         key={i}
                                         index={index}
-                                    />
-                                ))}
+                                        />
+                                    ))}
+                                </div>
+                            </div>
                         </div>
                     </div>
                 </div>
