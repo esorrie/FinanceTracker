@@ -28,6 +28,7 @@ def create_app():
     from models.currencies import Currencies
     from models.gainer import Gainers
     from models.loser import Losers
+    from models.etfs import Etfs
 
     #Import routes
     from routes.dashboard import dashboard_bp
