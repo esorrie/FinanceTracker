@@ -9,6 +9,7 @@ from services.indices_service import get_index_data
 from services.gainer_service import get_gainers_data
 from services.loser_service import get_losers_data
 from services.etfs_service import get_etfs_data
+from services.stocks_service import get_stock_data
 
 def create_app():
     app = Flask(__name__)
@@ -51,6 +52,7 @@ if __name__ == '__main__':
         success, message = get_gainers_data()
         success, message = get_losers_data()
         success, message = get_etfs_data()
+        success, message = get_stock_data()
         
         if success:
             print("Initial API call successful")
