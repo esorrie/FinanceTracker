@@ -4,6 +4,7 @@ from .indices_service import get_index_data, update_indices_prices
 from .gainer_service import get_gainers_data
 from .loser_service import get_losers_data
 from .etfs_service import get_etfs_data
+from .stocks_service import get_stock_data
 
 
 def scheduled_index_update():
@@ -31,6 +32,11 @@ def scheduled_etf_update():
     if not success:
         current_app.logger.error(f"Minute price update for Etf's failed: {message}")
 
+def scheduled_stock_update():
+    success, message = get_stock_data()
+    if not success:
+        current_app.logger.error(f"hourly full update for Etf's failed: {message}")
+
 
 def init_scheduler(app):
     scheduler = BackgroundScheduler()
@@ -38,9 +44,13 @@ def init_scheduler(app):
     def run_job(job_func):
         with app.app_context():
             job_func()
-            
+        
+    def run_hour_jobs():
+        run_job(scheduled_index_update)
+        run_job(scheduled_stock_update)
+        
     scheduler.add_job(
-        func=lambda: run_job(scheduled_index_update), 
+        func=run_hour_jobs,
         trigger="cron", hour='6-22', minute=0
         )
     
