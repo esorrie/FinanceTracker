@@ -1,6 +1,6 @@
 import React from "react";
 
-const TopMovers = ({ index }) => {
+const TopMovers = ({ mover }) => {
     const formatValue = (key, value) => {
         if (key === "changePercentage") {
             return `${value.toFixed(2)}`;
@@ -23,14 +23,14 @@ const TopMovers = ({ index }) => {
     return  <>
                 <div className="moverLayout">
                     <div className="graphTitle">
-                        {index.name} ({index.ticker})
+                        {mover.name} ({mover.ticker})
                     </div>
 
                     <div className="tableContent">
                         {dataOrder.map((key) => (
                             <div className="tr">
                                 <div className="dataLabel"> {labelMap[key]} </div>
-                                <div className="dataValue"> {formatValue(key, index[key])} </div>
+                                <div className="dataValue"> {formatValue(key, mover[key])} </div>
                             </div>
                         ))}
                     </div>

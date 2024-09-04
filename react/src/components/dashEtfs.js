@@ -1,6 +1,6 @@
 import React from "react";
 
-const DashEtfs = ({ index }) => {
+const DashEtfs = ({ etf }) => {
     const formatValue = (key, value) => {
         if (key === "price") {
             return value.toFixed(2);
@@ -19,14 +19,14 @@ const DashEtfs = ({ index }) => {
     return <>
             <div className="etfLayout">
                 <div className="graphTitle">
-                    {index.name} ({index.ticker})
+                    {etf.name} ({etf.ticker})
                 </div>
 
                 <div className="etfContent">
                     {dataOrder.map((key) => (
                         <div key={key} className="tr">    
                             <div className="dataLabel"> {labelMap[key]} </div>
-                            <div className="dataValue"> {formatValue(key, index[key])} </div>
+                            <div className="dataValue"> {formatValue(key, etf[key])} </div>
                         </div>
                     ))} 
                 </div>

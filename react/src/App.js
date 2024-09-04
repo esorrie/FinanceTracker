@@ -14,7 +14,7 @@ const App = () => {
             <div className="main">
                 <Switch>
                     <Route exact path="/" render={() => {
-                        console.log("/ route matched");
+                        // console.log("/ route matched");
                         return <Dashboard />;
                     }} />
                     {/* <Route path="/stocks" render={() => {
@@ -22,7 +22,7 @@ const App = () => {
                         return <Favourites />;
                     }} /> */}
                     <Route path="/stocks" render={() => {
-                        console.log("/ route matched");
+                        // console.log("/ route matched");
                         return <Stocks />;
                     }} />
                     {/* <Route path="/Indices" render={() => {

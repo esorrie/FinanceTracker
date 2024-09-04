@@ -40,7 +40,7 @@ function Dashboard() {
             setEtfsData(response.data.etfs);
             // console.log('losers data set:', response.data.etfs);
         } catch (error) {
-            console.error('Error fetching indices data:', error);
+            console.error('Error fetching data:', error);
         }
     };
 
@@ -147,10 +147,10 @@ function Dashboard() {
                             <div className='secondATitle'> Winners </div>
                             <div className="moverContentContainer" >
                                 <div className='moverContent graphsLayout'>
-                                    {gainersData.map((index, i) => (
+                                    {gainersData.map((mover, m) => (
                                         <TopMovers
-                                            key={i}
-                                            index={index}
+                                            key={m}
+                                            mover={mover}
                                         />
                                     ))}
                                 </div>
@@ -160,10 +160,10 @@ function Dashboard() {
                             <div className='secondBTitle'> Losers </div>
                             <div className="moverContentContainer" >
                                 <div className='moverContent graphsLayout'>
-                                    {losersData.map((index, i) => (
+                                    {losersData.map((mover, m) => (
                                         <TopMovers
-                                            key={i}
-                                            index={index}
+                                            key={m}
+                                            mover={mover}
                                         />
                                     ))}
                                 </div>
@@ -175,10 +175,10 @@ function Dashboard() {
                         <div className='thirdTitle'> ETF's </div>
                             <div className='etfContentContainer'>
                                 <div className='etfContent'>
-                                    {etfData.map((index, i ) => (
+                                    {etfData.map((etf, e ) => (
                                         <DashEtfs
-                                        key={i}
-                                        index={index}
+                                        key={e}
+                                        etf={etf}
                                         />
                                     ))}
                                 </div>
