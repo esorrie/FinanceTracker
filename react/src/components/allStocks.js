@@ -2,11 +2,11 @@ import React from "react";
 
 const AllStocks = ({ stock }) => {
     const formatMktcap = (value) => {
-        if (value >= 1e12) {
+        if (value>= 1e12) {
             return `${(value / 1e12).toFixed(1)}T`;
-        } else if (value >= 1e9) {
+        } else if (value>= 1e9) {
             return `${(value / 1e9).toFixed(1)}B`;
-        } else if (value >= 1e6) {
+        } else if (value>= 1e6) {
             return `${(value / 1e6).toFixed(1)}M`;
         } else {
             return value.toLocaleString();
@@ -14,7 +14,9 @@ const AllStocks = ({ stock }) => {
     };
 
     const formatValue = (key, value) => {
-        if (key === "volume" || "avg_volume" ) {
+        if (key === "volume") {
+            return value.toLocaleString();
+        } else if (key === "avg_volume"){
             return value.toLocaleString();
         } else if (key === "changePercentage") {
             return `${value.toFixed(2)}%`;
