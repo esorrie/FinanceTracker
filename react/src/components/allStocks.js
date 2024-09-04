@@ -46,7 +46,7 @@ const AllStocks = ({ stock }) => {
     }
 
     return  <>
-                <div className="graphLayout">
+                <div className="stockLayout">
                     <div className="stockTitle">
                         {stock.name} ({stock.ticker}) - {stock.currency}
                     </div>
