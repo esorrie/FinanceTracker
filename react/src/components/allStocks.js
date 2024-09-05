@@ -1,4 +1,5 @@
 import React from "react";
+import { NavLink } from "react-router-dom";
 
 const AllStocks = ({ stock }) => {
     const formatMktcap = (value) => {
@@ -50,9 +51,10 @@ const AllStocks = ({ stock }) => {
     return  <>
                 <div className="stockLayout">
                     <div className="stockTitle">
-                        {stock.name} ({stock.ticker}) - {stock.currency}
+                        <NavLink to={`/stocks/${stock.ticker}`}style={{ textDecoration: 'none' }}>
+                            {stock.name} ({stock.ticker}) - {stock.currency}
+                        </NavLink>
                     </div>
-
                     <div className="tableStockContent">
                         {dataOrder.map((key) => (
                             <div key={key} className="trStocks">
