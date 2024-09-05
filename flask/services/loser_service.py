@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 from flask import current_app
 from models.loser import Losers
 from extensions import db
@@ -27,7 +28,9 @@ def get_losers_data():
                 db.session.add(new_loser)
             
         db.session.commit()
-        return True, f'Losers data updated. {len(data)} records added'
+        message = f"Loser data fetched and stored successfully at {datetime.now()}"
+        print(message)
+        return True, message
     
     except requests.exceptions.RequestException as e:
         db.session.rollback()

@@ -1,4 +1,5 @@
 import requests
+from datetime import datetime
 from flask import current_app
 from models.gainer import Gainers
 from extensions import db
@@ -27,7 +28,10 @@ def get_gainers_data():
                 db.session.add(new_gainer)
             
         db.session.commit()
-        return True, f'Gainers data updated. {len(data)} records added.'
+        message = f"Gainer data fetched and stored successfully at {datetime.now()}"
+        print(message)
+        return True, message
+    
     
     except requests.exceptions.RequestException as e:
         db.session.rollback()
