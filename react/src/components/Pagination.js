@@ -1,25 +1,62 @@
 import React from "react";
+import './pagination.css';
 
 const Pagination = ({ currentPage, totalPages, onPageChange }) => {
-    const pageNumbers = [];
+    const handlePrevious = () => {
+        if (currentPage > 1) {
+            onPageChange(currentPage - 1)
+        }
+    };
 
-    for (let i = 1; i <= totalPages; i++) {
-        pageNumbers.push(i);
-    }
+    const handleNext = () => {
+        if (currentPage < totalPages) {
+            onPageChange(currentPage +1 )
+        }
+    };
 
     return  (
-                <nav>
-                    <ul className="pagination">
-                        {pageNumbers.map(number => (
-                            <li key={number} className={`page-item ${currentPage === number ? 'active' : ''}`}>
-                                <button onClick={() => onPageChange(number)} className="page-link">
-                                    {number}
-                                </button>
-                            </li>
-                        ))}
-                    </ul>
-                </nav>
-            )
+            <nav className="pagination">
+                <button 
+                    onClick={handlePrevious} 
+                    disabled={currentPage === 1}
+                    className="pagination-button"
+                >
+                    &lt;
+                </button>
+                
+                <button
+                    onClick={() => onPageChange(1)}
+                    className={`pagination-button ${currentPage === 1 ? 'active' : ''}`}
+                >
+                    1
+                </button>
+
+                {currentPage !== 1 && currentPage !== totalPages && (
+                    <button
+                        className="pagination-button active"
+                    >
+                        {currentPage}
+                    </button>
+                )}
+
+                {totalPages > 1 && (
+                    <button
+                        onClick={() => onPageChange(totalPages)}
+                        className={`pagination-button ${currentPage === totalPages ? 'active' : ''}`}
+                    >
+                        {totalPages}
+                    </button>
+                )}
+
+                <button 
+                    onClick={(handleNext)}
+                    disabled={currentPage === totalPages}
+                    className="pagination-button"
+                >
+                    &gt;
+                </button>
+            </nav>
+            );
 };
 
 export default Pagination;

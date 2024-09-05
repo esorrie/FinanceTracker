@@ -20,12 +20,58 @@
 	border-radius: 2rem;
 }
 
+.stockMainBar{ 
+	display: flex;
+	flex-direction: row;
+	justify-content: space-between;
+}
+
 .pageTitle {
     font-size: 2rem;
 	font-weight: 800;
 	padding-top: 16px;
 	padding-bottom: 8px;
 	padding-left: 32px;
+}
+
+.pagination-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding-top: 20px;
+    padding-bottom: 20px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+}
+
+.pagination-button {
+    margin: 0 5px;
+    padding: 5px 10px;
+    border: 1px solid #ccc;
+    background-color: #fff;
+    color: #333;
+    cursor: pointer;
+    border-radius: 3px;
+}
+
+.pagination-button:disabled {
+    opacity: 0.5;
+    cursor: not-allowed;
+}
+
+.pagination-button.active {
+    background-color: #007bff;
+    color: #fff;
+    border-color: #007bff;
+}
+
+.pagination-button.ellipsis {
+    border: none;
+    background-color: transparent;
+    cursor: default;
 }
 
 .stockLayout {

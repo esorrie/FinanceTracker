@@ -35,7 +35,17 @@ function Stocks() {
             <div className='stocks'>
                 <div className='stockContainer'>
                     <div className='stockMain'>
-                        <div className='pageTitle'> Stocks </div>
+                        <div className='stockMainBar'>  
+                            <div className='pageTitle'> Stocks </div>
+                            <div className='pagination-container'>
+                                <Pagination
+                                    currentPage={currentPage}
+                                    totalPages={totalPages}
+                                    onPageChange={handlePageChange}
+                                />
+                            </div>
+                            <div> Search Bar </div>
+                        </div>
                         <div>
                             {stockData.map((stock, s) => (
                                 <AllStocks
@@ -44,11 +54,6 @@ function Stocks() {
                                 />
                             ))}
                         </div>
-                        <Pagination
-                            currentPage={currentPage}
-                            totalPages={totalPages}
-                            onPageChange={handlePageChange}
-                        />
                     </div>
                 </div>
             </div>
