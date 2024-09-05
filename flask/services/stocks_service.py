@@ -7,6 +7,8 @@ from extensions import db
 def get_stock_data():
     
     exchanges = ['NASDAQ', 'NYSE', 'LSE']
+    all_stocks = []
+    
     total_stocks_processed = 0
     skipped_stocks = 0
     
@@ -16,11 +18,12 @@ def get_stock_data():
         try: 
             response = requests.get(url)
             response.raise_for_status()
-            data = response.json()
+            exchange_data = response.json()
+            all_stocks.extend(exchange_data)
             
-            for stock in data:
+            for stock in all_stocks:
                 
-                if any(stock.get(field) is None for field in [
+                if any(stock.get(field) is None or stock.get(field) == 0 for field in [
                     'price', 'changesPercentage', 'change', 'dayLow', 'dayHigh',
                     'yearHigh', 'yearLow', 'marketCap', 'exchange', 'volume',
                     'avgVolume', 'open', 'previousClose', 'eps', 'pe',
@@ -65,11 +68,6 @@ def get_stock_data():
                 if total_stocks_processed % 100 == 0:
                     db.session.commit()
                     
-            db.session.commit()
-            message = f"stock data fetched and stored successfully from first api call at {datetime.now()}"
-            print(message)
-            return True, message
-                
                 
         except requests.exceptions.RequestException as e:
             error_message = f"API request failed: {str(e)}"
@@ -81,9 +79,17 @@ def get_stock_data():
             print(error_message)
             return False, error_message
         
+    db.session.commit()
+    message = f"Stock data fetched and stored successfully. Total processed: {total_stocks_processed}, Skipped: {skipped_stocks} at {datetime.now()}"
+    print(message)
+    return True, message
+        
         
 def update_stocks_price():
     exchanges = ['NASDAQ', 'NYSE', 'LSE']
+    all_stocks = []
+    
+    total_stocks_processed = 0
     skipped_stocks = 0
     
     for exchange in exchanges:
@@ -92,11 +98,12 @@ def update_stocks_price():
         try: 
             response = requests.get(url)
             response.raise_for_status()
-            data = response.json()
+            exchange_data = response.json()
+            all_stocks.extend(exchange_data)
             
-            for stock in data:
+            for stock in all_stocks:
                 
-                if any(stock.get(field) is None for field in [
+                if any(stock.get(field) is None or stock.get(field) == 0 for field in [
                     'price', 'changesPercentage', 'change', 'dayLow', 'dayHigh',
                     'yearHigh', 'yearLow', 'marketCap', 'exchange', 'volume',
                     'avgVolume', 'open', 'previousClose', 'eps', 'pe',
@@ -115,9 +122,10 @@ def update_stocks_price():
                     for key, value in stock_data.items():
                         setattr(existing_stock, key, value)
                         
-            db.session.commit()
-            message = f"stock data fetched and stored successfully for price update at {datetime.now()}"
-            print(message)
-            return True, message
         except Exception as e:
             return False, str(e)
+        
+    db.session.commit()
+    message = f"Stock price updated and stored successfully. Total processed: {total_stocks_processed}, Skipped: {skipped_stocks} at {datetime.now()}"
+    print(message)
+    return True, message
