@@ -29,7 +29,7 @@ const AllStocks = ({ stock }) => {
     };
 
     const dataOrder = [
-        'price', 'prev_close', 'open', 'marketCap',
+        'price', 'open', 'prev_close', 'marketCap',
         'dayLow', 'dayHigh', 'changePercentage',
         'volume', 'avg_volume', 
         

@@ -40,7 +40,7 @@ def scheduled_stock_update():
 def scheduled_stock_price_update():
     success, message = update_stocks_price()
     if not success:
-        current_app.logger.error(f"hourly full update for Etf's failed: {message}")
+        current_app.logger.error(f"minute price update for stocks failed: {message}")
 
 
 

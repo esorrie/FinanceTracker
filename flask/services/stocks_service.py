@@ -6,7 +6,7 @@ from extensions import db
 
 def get_stock_data():
     
-    exchanges = ['NYSE', 'NASDAQ', 'LSE']
+    exchanges = ['NASDAQ', 'NYSE', 'LSE']
     total_stocks_processed = 0
     skipped_stocks = 0
     
