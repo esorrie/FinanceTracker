@@ -206,6 +206,7 @@
 }
 
 .dashThirdContent{
+	width: 100%;
 	border-radius: 2rem;
 	margin: 16px;
 	background-color: #4F1787;
