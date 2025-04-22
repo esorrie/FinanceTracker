@@ -23,7 +23,7 @@ const TopMovers = ({ mover }) => {
     return  <>
                 <div className="moverLayout">
                     <div className="graphTitle">
-                        {mover.name} ({mover.ticker})
+                        {mover.ticker}
                     </div>
 
                     <div className="tableContent">
