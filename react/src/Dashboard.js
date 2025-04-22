@@ -29,6 +29,7 @@ function Dashboard() {
         fetchDashboardData();
     }, []);
 
+    // calls dashboard.py which queries the db for respective data, then assigns response to respective data title
     const fetchDashboardData = async () => {
         try {
             // console.log('fetching data');
