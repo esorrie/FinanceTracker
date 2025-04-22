@@ -152,7 +152,7 @@ function Dashboard() {
                         <div className='dashSecondA'>
                             <MarketSection 
                                 title="Winners"
-                                titleClassName='secondATitle'
+                                titleClassName='secondTitle'
                                 data={marketData.gainers}
                                 containerClassName='moverContentContainer'
                                 contentClassName='moverContent'
@@ -166,7 +166,7 @@ function Dashboard() {
                         <div  className='dashSecondB'>
                             <MarketSection 
                                 title="Losers"
-                                titleClassName='SecondBTitle'
+                                titleClassName='secondTitle'
                                 data={marketData.losers}
                                 containerClassName='moverContentContainer'
                                 contentClassName='moverContent'
@@ -180,13 +180,12 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className='dashThird'>
-
                             <MarketSection
                                 title="ETF"
                                 titleClassName='thirdTitle'
                                 data={marketData.etfs}
                                 containerClassName='etfContentContainer'
-                                contentClassName='dashThirdContent'
+                                contentClassName='etfContent'
                                 renderItem={(etf, i) => (
                                     <DashEtfs
                                     key={i}
@@ -194,7 +193,6 @@ function Dashboard() {
                                     />
                                 )}
                             />
-
                     </div>
                 </div>
             </>

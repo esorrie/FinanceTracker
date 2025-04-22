@@ -25,20 +25,20 @@ def dashboard():
             'changePercentage': index.changePercentage,
         } for index in indices ]
         
-        gainers = Gainers.query.limit(4).all()
+        gainers = Gainers.query.limit(3).all()
         
         dashGainers = [{
-            'name': gainer.name,
+            # 'name': gainer.name,
             'ticker': gainer.ticker,
             'price': gainer.price,
             'change': gainer.change,
             'changePercentage': gainer.changePercentage,
         } for gainer in gainers ]
         
-        losers = Losers.query.limit(4).all()
+        losers = Losers.query.limit(3).all()
         
         dashLosers = [{
-            'name': loser.name,
+            # 'name': loser.name,
             'ticker': loser.ticker,
             'price': loser.price,
             'change': loser.change,
