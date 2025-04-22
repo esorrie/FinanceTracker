@@ -221,9 +221,12 @@
 
 .etfContentContainer {
 	display: flex;
-	margin-top: 8px;
+	flex-wrap: wrap;
+	margin-top: 16px;
 	padding-left: 16px;
 	padding-right: 16px;
+	row-gap: 8px;
+
 }
 
 .etfLayout {
@@ -233,12 +236,10 @@
 	border-color: #fff;
 	border-radius: 1rem;
 	background-color: #000;
-	margin-bottom: 8px;
 }
 
 .etfContent{
 	display: grid;
 	grid-template-rows: repeat(2, minmax(0, 1fr));
-	row-gap: 8px;
 	margin-top: 12px;
 }

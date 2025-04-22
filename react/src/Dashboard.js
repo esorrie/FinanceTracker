@@ -171,19 +171,21 @@ function Dashboard() {
                         </div>
                     </div>
                     <div className='dashThird'>
-                        <div className='dashThirdContent'>
-                        <div className='thirdTitle'> ETF's </div>
-                            <div className='etfContentContainer'>
-                                <div className='etfContent'>
-                                    {etfData.map((etf, e ) => (
-                                        <DashEtfs
-                                        key={e}
-                                        etf={etf}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
-                        </div>
+
+                            <MarketSection
+                                title="ETF"
+                                titleClassName='thirdTitle'
+                                data={marketData.etfs}
+                                containerClassName='etfContentContainer'
+                                contentClassName='dashThirdContent'
+                                renderItem={(etf, i) => (
+                                    <DashEtfs
+                                    key={i}
+                                    etf={etf} 
+                                    />
+                                )}
+                            />
+
                     </div>
                 </div>
             </>
