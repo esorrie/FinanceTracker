@@ -22,7 +22,7 @@ const DashEtfs = ({ etf }) => {
                     {etf.name} ({etf.ticker})
                 </div>
 
-                <div className="etfContent">
+                <div className="etfTableContent">
                     {dataOrder.map((key) => (
                         <div key={key} className="tr">    
                             <div className="dataLabel"> {labelMap[key]} </div>

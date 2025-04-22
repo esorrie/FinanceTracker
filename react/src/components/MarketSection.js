@@ -18,13 +18,13 @@ const MarketSection = ({
         );
         
         const defaultContentRender = () => (
-            <div className={containerClassName}>
+            <div className={contentClassName}>
                 {data.map((item, index) => renderItem(item, index))}
             </div>
         );
 
         return (
-            <div className={contentClassName}>
+            <div className={containerClassName}>
                 {showTitle && (renderTitle ? renderTitle(title) : defaultTitleRender())}
                 {renderContent ? renderContent(data) : defaultContentRender()}
             </div>
