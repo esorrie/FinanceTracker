@@ -3,6 +3,7 @@ import ActiveTab from './components/activeTabs';
 import DashIndices from './components/dashIndices';
 import TopMovers from './components/topMovers';
 import DashEtfs from './components/dashEtfs';
+import MarketSection from './components/MarketSection';
 import axios from 'axios';
 import './Dashboard.css';
 
@@ -10,11 +11,13 @@ function Dashboard() {
     // Dynamic tab rendering 
     const [activeTab, setActiveTab] = useState(1); //change state back to 0
     const [activeStockTab, setActiveStockTab] = useState(0);
-    const [indicesData, setIndicesData] = useState([]);
-    const [gainersData, setGainersData] = useState([]);
-    const [losersData, setLosersData] = useState([]);
-    const [etfData, setEtfsData] = useState([]);
 
+    const[marketData, setMarketData] = useState({
+        indices: [],
+        gainers: [],
+        losers: [],
+        etfs: [],
+    });
 
     const tabs = [
         { label: 'Top Stocks' },
@@ -29,16 +32,18 @@ function Dashboard() {
     const fetchDashboardData = async () => {
         try {
             // console.log('fetching data');
-            const response = await axios.get('/dashboard')
+            const response = await axios.get('/dashboard');
             // console.log('response received:', response);
-            setIndicesData(response.data.indices);
-            // console.log('indices data set:', response.data.indices);
-            setGainersData(response.data.gainers);
-            // console.log('gainers data set:', response.data.gainers);
-            setLosersData(response.data.losers);
-            // console.log('losers data set:', response.data.losers);
-            setEtfsData(response.data.etfs);
-            // console.log('losers data set:', response.data.etfs);
+            setMarketData({
+                // console.log('indices data set:', response.data.indices);
+                indices: response.data.indices,
+                // console.log('gainers data set:', response.data.gainers);
+                gainers: response.data.gainers,
+                // console.log('losers data set:', response.data.losers);
+                losers: response.data.losers,
+                // console.log('losers data set:', response.data.etfs);
+                etfs: response.data.etfs
+            });
         } catch (error) {
             console.error('Error fetching data:', error);
         }
@@ -77,7 +82,7 @@ function Dashboard() {
                             <div className="activeContentContainer" >
                                 <div className='activeContent graphsLayout'>
                                     
-                                    {indicesData.map((index, i) => (
+                                    {marketData.indices.map((index, i) => (
                                         <DashIndices
                                             key={i}
                                             index={index}
@@ -144,30 +149,33 @@ function Dashboard() {
                     </div>
                     <div className='dashSecond'>
                         <div className='dashSecondA'>
-                            <div className='secondATitle'> Winners </div>
-                            <div className="moverContentContainer" >
-                                <div className='moverContent graphsLayout'>
-                                    {gainersData.map((mover, m) => (
-                                        <TopMovers
-                                            key={m}
-                                            mover={mover}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
+                            <MarketSection 
+                                title="Winners"
+                                titleClassName='secondATitle'
+                                data={marketData.gainers}
+                                containerClassName='moverContentContainer'
+                                contentClassName='moverContent'
+                                renderItem={(mover, i) => (
+                                    <TopMovers 
+                                        key={i} 
+                                        mover={mover} />
+                                )}
+                            />
                         </div>
                         <div  className='dashSecondB'>
-                            <div className='secondBTitle'> Losers </div>
-                            <div className="moverContentContainer" >
-                                <div className='moverContent graphsLayout'>
-                                    {losersData.map((mover, m) => (
-                                        <TopMovers
-                                            key={m}
-                                            mover={mover}
-                                        />
-                                    ))}
-                                </div>
-                            </div>
+                            <MarketSection 
+                                title="Losers"
+                                titleClassName='SecondBTitle'
+                                data={marketData.losers}
+                                containerClassName='moverContentContainer'
+                                contentClassName='moverContent'
+                                renderItem={(mover, i) => (
+                                    <TopMovers 
+                                        key={i} 
+                                        mover={mover} 
+                                    />
+                                )}
+                            />
                         </div>
                     </div>
                     <div className='dashThird'>
@@ -190,5 +198,4 @@ function Dashboard() {
                 </div>
             </>
 }
-
 export default Dashboard;
