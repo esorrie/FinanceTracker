@@ -51,7 +51,7 @@ const AllStocks = ({ stock }) => {
     return  <>
                 <div className="stockLayout">
                     <div className="stockTitle">
-                        <NavLink to={`/stocks/${stock.ticker}`}style={{ textDecoration: 'none' }}>
+                        <NavLink to={`/stocks/${stock.ticker}`} style={{ textDecoration: 'none', color: 'inherit' }}>
                             {stock.name} ({stock.ticker}) - {stock.currency}
                         </NavLink>
                     </div>
